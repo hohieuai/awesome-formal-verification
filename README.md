@@ -2,8 +2,6 @@
 
 A curated collection of formal verification tools, languages, verified systems, research papers, and learning resources for proving that software and hardware behave correctly.
 
-The list covers 100+ entries across 13 sections. Every link and description was checked against the project's official site, repository, or paper in October 2026. Tools that are archived or no longer maintained are kept with a note, since their ideas and papers remain useful.
-
 Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Contents
@@ -21,11 +19,8 @@ Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
 - [Learning Resources](#learning-resources)
 - [Research](#research)
 - [Conferences & Events](#conferences--events)
-- [Maintenance](#maintenance)
 
 ## Getting Started
-
-If you are new to formal verification, start with the tools that match what you want to verify.
 
 | If you want to verify             | Start with                                                                            |
 | --------------------------------- | ------------------------------------------------------------------------------------- |
@@ -36,17 +31,16 @@ If you are new to formal verification, start with the tools that match what you 
 | Mathematics                       | Lean 4 with Theorem Proving in Lean 4 and Mathlib                                     |
 | Programming language theory       | Rocq with Software Foundations, or Agda with PLFA                                     |
 | Smart contracts                   | Certora Prover for EVM; Kontrol for Foundry projects                                  |
-| Proofs with AI assistance         | The AI for Formal Verification section                                                |
 
-The tables below use a few recurring terms.
+### Terminology
 
-| Term        | Meaning                                                                                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Interactive | The user writes the proof step by step, with tactic support                                                                                               |
-| Auto-active | The user writes specifications and invariants; the tool discharges the proofs with an SMT solver                                                          |
-| Automated   | The tool needs no annotations beyond the property to check                                                                                                |
-| Theories    | The logics a solver accepts. Quantifiers and nonlinear integer arithmetic are undecidable in general, so a solver that supports them may answer *unknown* |
-| Language    | The language users write in, followed by the implementation language when the two differ                                                                  |
+| Term        | Meaning                                                                                          |
+| ----------- | ------------------------------------------------------------------------------------------------ |
+| Interactive | The user writes the proof step by step, with tactic support                                      |
+| Auto-active | The user writes specifications and invariants; an SMT solver discharges the proofs               |
+| Automated   | No annotations are needed beyond the property to check                                           |
+| Theories    | Logics a solver accepts; quantifiers and nonlinear integer arithmetic are undecidable in general |
+| Language    | The user-facing language, followed by the implementation language when they differ               |
 
 ## Theorem Provers
 
@@ -130,7 +124,7 @@ The tables below use a few recurring terms.
 
 ## Smart Contract Verification
 
-- [Certora Prover](https://github.com/Certora/CertoraProver) - Formal verification tool for EVM, Solana, and Stellar smart contracts with specifications written in CVL; open source (GPL-3.0) since 2025.
+- [Certora Prover](https://github.com/Certora/CertoraProver) - Formal verification tool for EVM, Solana, and Stellar smart contracts, with specifications written in CVL (open source since 2025).
 - [Slither](https://github.com/crytic/slither) - Static analysis framework for Solidity, often used alongside formal verification workflows.
 - [Mythril](https://github.com/ConsenSysDiligence/mythril) - Security analysis tool for EVM bytecode using symbolic execution.
 - [Halmos](https://github.com/a16z/halmos) - Symbolic testing tool for EVM smart contracts, compatible with Foundry tests.
@@ -149,25 +143,23 @@ The tables below use a few recurring terms.
 - [CertiKOS](https://flint.cs.yale.edu/certikos/) - Certified concurrent OS kernel with verified C compiler toolchain.
 - [Ironclad / IronFleet](https://github.com/microsoft/Ironclad) - Verified distributed systems and applications in Dafny (Microsoft Research).
 - [miTLS](https://github.com/project-everest/mitls-fstar) - Partially verified reference implementation of TLS 1.3 in F* (verified record layer).
-- [HACMS](https://www.darpa.mil/research/programs/high-assurance-cyber-military-systems) - Completed DARPA program that applied formal methods (including seL4) to build high-assurance vehicle software, demonstrated on a quadcopter and Boeing's Unmanned Little Bird helicopter.
-- [HACL* / EverCrypt](https://github.com/hacl-star/hacl-star) - Verified cryptographic library in F* (HACL*) and the EverCrypt provider that combines it with Vale verified assembly behind one agile API.
+- [HACMS](https://www.darpa.mil/research/programs/high-assurance-cyber-military-systems) - Completed DARPA program that applied formal methods, including seL4, to high-assurance software for unmanned vehicles.
+- [HACL* / EverCrypt](https://github.com/hacl-star/hacl-star) - Verified cryptographic library in F* (HACL*) with the EverCrypt provider that combines it with Vale verified assembly.
 - [Vale](https://github.com/project-everest/vale) - Tool for generating verified assembly language.
 
 ## AI for Formal Verification
 
-Language models are now used both to write proofs and to check that AI-generated mathematics is correct.
-
 ### Libraries & Tools
 
-- [Mathlib](https://github.com/leanprover-community/mathlib4) - Community library of formalized mathematics for Lean 4; the main target and training corpus for AI provers.
+- [Mathlib](https://github.com/leanprover-community/mathlib4) - Community library of formalized mathematics for Lean 4, and the main training corpus for AI provers.
 - [LeanDojo](https://github.com/lean-dojo/LeanDojo) - Toolkit for extracting training data from Lean projects and letting models interact with Lean programmatically.
 - [Lean Copilot](https://github.com/lean-dojo/LeanCopilot) - Runs LLMs inside Lean 4 to suggest tactics, search for proofs, and select premises.
 
 ### Models & Results
 
-- [OpenAI math collection](https://github.com/openai/math) - 700+ mathematical manuscripts produced by an internal OpenAI model on open research problems, with Lean formalizations for about 42% of top-line results as of October 2026; unformalized results are not independently verified and may contain errors.
+- [OpenAI math collection](https://github.com/openai/math) - Mathematical manuscripts produced by an internal OpenAI model on open research problems, with Lean formalizations for part of the results; unformalized results are not independently verified.
 - [DeepSeek-Prover-V2](https://github.com/deepseek-ai/DeepSeek-Prover-V2) - Open-weight language model for theorem proving in Lean 4, trained with reinforcement learning on subgoal decomposition.
-- [AlphaProof](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/) - DeepMind's reinforcement-learning system that proves competition problems in Lean; reached silver-medal level at IMO 2024.
+- [AlphaProof](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/) - DeepMind's reinforcement-learning system for proving competition problems in Lean (silver-medal level at IMO 2024).
 
 ### Benchmarks
 
@@ -223,9 +215,3 @@ Language models are now used both to write proofs and to check that AI-generated
 - [awesome-open-hardware-verification](https://github.com/ben-marshall/awesome-open-hardware-verification) - Open-source hardware verification tools and flows.
 - [ethereum_formal_verification_overview](https://github.com/leonardoalt/ethereum_formal_verification_overview) - Overview of formal verification tools for Ethereum smart contracts.
 - [Formal methods (Wikipedia)](https://en.wikipedia.org/wiki/Formal_methods) - Encyclopedia overview of formal methods and verification.
-
-## Maintenance
-
-Every entry links to one primary source: the official site or the repository where development takes place. When a project moves, the link follows it. Descriptions state what a tool does today; projects that are archived or inactive keep their entry with a note, so readers know what to expect before cloning. Research entries use the title, authors, and venue of the published version and link to an open-access copy where one exists.
-
-A GitHub Actions workflow runs `awesome-lint` and a link checker on every pull request and once a week, so broken links are caught without waiting for a reader to report them.
