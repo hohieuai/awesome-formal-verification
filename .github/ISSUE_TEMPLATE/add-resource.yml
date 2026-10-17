@@ -1,0 +1,52 @@
+name: Suggest a resource
+description: Propose a tool, paper, or learning resource for the list.
+title: "Add: "
+labels: [resource]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Primary URL
+      description: The official site or the repository where development takes place.
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      options:
+        - Theorem Provers
+        - SMT / SAT Solvers
+        - Program Verification
+        - Model Checkers
+        - Specification Languages & Frameworks
+        - Hardware Verification
+        - Smart Contract Verification
+        - Verified Systems & Case Studies
+        - AI for Formal Verification
+        - Learning Resources
+        - Research
+        - Conferences & Events
+        - Related Lists
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: One-line description
+      description: What the resource does. For papers, include authors, venue, and year.
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why it belongs on the list
+      description: Maintenance status, adoption, or academic significance.
+    validations:
+      required: true

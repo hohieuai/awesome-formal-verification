@@ -1,81 +1,126 @@
-# [Awesome Formal Verification](https://github.com/hohieuai/awesome-formal-verification) [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Awesome%20Formal%20Verification%20-%20a%20curated%20collection%20of%20tools%2C%20papers%2C%20and%20resources%20for%20proving%20software%20and%20hardware%20correctness&url=https://github.com/hohieuai/awesome-formal-verification&hashtags=FormalVerification,TheoremProving,OpenSource)
+# Awesome Formal Verification [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
 
-A curated collection of **formal verification** tools, languages, verified systems, research papers, and learning resources — for proving that software and hardware behave correctly, not just hopefully.
+A curated collection of formal verification tools, languages, verified systems, research papers, and learning resources for proving that software and hardware behave correctly.
 
-Your contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
+The list covers 100+ entries across 13 sections. Every link and description was checked against the project's official site, repository, or paper in October 2026. Tools that are archived or no longer maintained are kept with a note, since their ideas and papers remain useful.
+
+Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Contents
+
+- [Getting Started](#getting-started)
+- [Theorem Provers](#theorem-provers)
+- [SMT / SAT Solvers](#smt--sat-solvers)
+- [Program Verification](#program-verification)
+- [Model Checkers](#model-checkers)
+- [Specification Languages & Frameworks](#specification-languages--frameworks)
+- [Hardware Verification](#hardware-verification)
+- [Smart Contract Verification](#smart-contract-verification)
+- [Verified Systems & Case Studies](#verified-systems--case-studies)
+- [AI for Formal Verification](#ai-for-formal-verification)
+- [Learning Resources](#learning-resources)
+- [Research](#research)
+- [Conferences & Events](#conferences--events)
+- [Maintenance](#maintenance)
+
+## Getting Started
+
+If you are new to formal verification, start with the tools that match what you want to verify.
+
+| If you want to verify             | Start with                                                                            |
+| --------------------------------- | ------------------------------------------------------------------------------------- |
+| Rust code                         | Kani for automated bounded checking; Verus or Creusot for full functional correctness |
+| C code                            | Frama-C with ACSL annotations, or CBMC for bounded model checking                     |
+| Distributed systems and protocols | TLA+ with the Learn TLA+ tutorial, then Apalache for symbolic checking                |
+| Hardware (RTL)                    | SymbiYosys with the ZipCPU tutorials                                                  |
+| Mathematics                       | Lean 4 with Theorem Proving in Lean 4 and Mathlib                                     |
+| Programming language theory       | Rocq with Software Foundations, or Agda with PLFA                                     |
+| Smart contracts                   | Certora Prover for EVM; Kontrol for Foundry projects                                  |
+| Proofs with AI assistance         | The AI for Formal Verification section                                                |
+
+The tables below use a few recurring terms.
+
+| Term        | Meaning                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Interactive | The user writes the proof step by step, with tactic support                                                                                               |
+| Auto-active | The user writes specifications and invariants; the tool discharges the proofs with an SMT solver                                                          |
+| Automated   | The tool needs no annotations beyond the property to check                                                                                                |
+| Theories    | The logics a solver accepts. Quantifiers and nonlinear integer arithmetic are undecidable in general, so a solver that supports them may answer *unknown* |
+| Language    | The language users write in, followed by the implementation language when the two differ                                                                  |
 
 ## Theorem Provers
 
-| Repository | Description | Logic | Automation | Language | Domain |
-| ---------- | ----------- | ----- | ---------- | -------- | ------ |
-| [Rocq](https://rocq-prover.org/) | Proof assistant for interactive development of formal proofs | Higher-order logic | Interactive | Rocq / OCaml | Software, math, PL theory |
-| [Lean 4](https://leanprover.github.io/) | Dependently typed theorem prover with fast elaboration | Dependent type theory | Interactive + tactics | Lean | Math, software, compilers |
-| [Isabelle](https://isabelle.in.tum.de/) | Generic proof assistant with powerful automation (Sledgehammer) | Higher-order logic | Interactive + automated | Isabelle/ML | Software, math, security |
-| [Agda](https://github.com/agda/agda) | Dependently typed functional language and proof assistant | Dependent types | Interactive | Agda | PL theory, math |
-| [HOL4](https://hol-theorem-prover.org/) | Proof assistant for higher-order logic | HOL | Interactive | Standard ML | Hardware, OS, math |
-| [Metamath](https://us.metamath.org/) | Minimalist framework for formalizing mathematics | Set theory | Interactive | Metamath | Mathematics |
-| [F*](https://github.com/FStarLang/FStar) | Dependently typed language for program verification and crypto | Dependent types | SMT-backed | F* | Crypto, systems, WebAssembly |
-| [Idris 2](https://www.idris-lang.org/) | General-purpose language with dependent types | Dependent types | Interactive | Idris | PL research, theorem proving |
+| Name                                     | Description                                                                 | Logic                               | Automation              | Language       | Domain                                            |
+| ---------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------- | ----------------------- | -------------- | ------------------------------------------------- |
+| [Rocq](https://rocq-prover.org/)         | Proof assistant for interactive development of formal proofs (formerly Coq) | Calculus of Inductive Constructions | Interactive             | Rocq / OCaml   | Software, math, PL theory                         |
+| [Lean 4](https://lean-lang.org/)         | Dependently typed theorem prover with fast elaboration                      | Dependent type theory               | Interactive + tactics   | Lean           | Math, software, compilers                         |
+| [Isabelle](https://isabelle.in.tum.de/)  | Generic proof assistant with powerful automation (Sledgehammer)             | Higher-order logic                  | Interactive + automated | Isabelle/ML    | Software, math, security                          |
+| [Agda](https://github.com/agda/agda)     | Dependently typed functional language and proof assistant                   | Dependent types                     | Interactive             | Agda / Haskell | PL theory, math                                   |
+| [HOL4](https://hol-theorem-prover.org/)  | Proof assistant for higher-order logic                                      | HOL                                 | Interactive             | Standard ML    | Compilers (CakeML), ISA and binary code, hardware |
+| [Metamath](https://us.metamath.org/)     | Minimalist framework for formalizing mathematics                            | Logic-agnostic (set.mm: ZFC)        | Interactive             | Metamath / C   | Mathematics                                       |
+| [F*](https://github.com/FStarLang/FStar) | Dependently typed language for program verification and crypto              | Dependent types                     | SMT-backed              | F*             | Crypto (HACL*), TLS, parsers, systems             |
+| [Idris 2](https://idris-lang.org/)       | General-purpose language with dependent types                               | Dependent types                     | Interactive             | Idris          | PL research, theorem proving                      |
 
 ## SMT / SAT Solvers
 
-| Repository | Description | Input | Decidability | Language | Typical Use |
-| ---------- | ----------- | ----- | ------------ | -------- | ----------- |
-| [Z3](https://github.com/Z3Prover/z3) | High-performance SMT solver from Microsoft Research | SMT-LIB | Decidable fragments | C++ / APIs | Program analysis, symbolic execution |
-| [cvc5](https://github.com/cvc5/cvc5) | SMT solver supporting many theories and proof production | SMT-LIB | Decidable fragments | C++ | Verification, synthesis |
-| [Yices 2](https://github.com/SRI-CSL/yices2) | Efficient SMT solver for software verification | SMT-LIB | Decidable fragments | C | BMC, invariant generation |
-| [Boolector](https://github.com/Boolector/boolector) | SMT solver for bit-vectors and arrays (archived; consider cvc5) | SMT-LIB | Bit-vectors | C | Hardware, low-level code |
-| [MiniSat](https://github.com/niklasso/minisat) | Minimalist SAT solver | CNF | SAT | C++ | BMC, planning, scheduling |
-| [Kissat](https://github.com/arminbiere/kissat) | State-of-the-art CDCL SAT solver | CNF | SAT | C | Competition-grade SAT solving |
-| [STP](https://github.com/stp/stp) | Simplifying theorem prover for bit-vectors and arrays | SMT-LIB | Bit-vectors | C++ | Symbolic execution (KLEE) |
+| Name                                                | Description                                                                                      | Input                   | Theories                                                                              | Language   | Typical Use                          |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ----------------------- | ------------------------------------------------------------------------------------- | ---------- | ------------------------------------ |
+| [Z3](https://github.com/Z3Prover/z3)                | High-performance SMT solver from Microsoft Research                                              | SMT-LIB                 | Linear and nonlinear arithmetic, bit-vectors, arrays, strings, quantifiers            | C++ / APIs | Program analysis, symbolic execution |
+| [cvc5](https://github.com/cvc5/cvc5)                | SMT solver supporting many theories and proof production                                         | SMT-LIB, SyGuS-IF       | Arithmetic, bit-vectors, arrays, strings, sets, quantifiers                           | C++        | Verification, synthesis              |
+| [Yices 2](https://github.com/SRI-CSL/yices2)        | Efficient SMT solver for software verification                                                   | SMT-LIB, Yices language | Linear and nonlinear arithmetic (MCSAT), bit-vectors, arrays, uninterpreted functions | C          | BMC, invariant generation            |
+| [Bitwuzla](https://github.com/bitwuzla/bitwuzla)    | SMT solver for bit-precise reasoning, successor of Boolector                                     | SMT-LIB, BTOR2          | Bit-vectors, floating-point, arrays, uninterpreted functions                          | C++        | Hardware, low-level code             |
+| [Boolector](https://github.com/Boolector/boolector) | SMT solver for bit-vectors, arrays and uninterpreted functions (archived; succeeded by Bitwuzla) | SMT-LIB, BTOR, BTOR2    | Bit-vectors, arrays, uninterpreted functions                                          | C          | Hardware, low-level code             |
+| [MiniSat](https://github.com/niklasso/minisat)      | Minimalist SAT solver (unmaintained; widely used as an embeddable reference)                     | CNF                     | Propositional                                                                         | C++        | BMC, planning, scheduling            |
+| [Kissat](https://github.com/arminbiere/kissat)      | State-of-the-art CDCL SAT solver                                                                 | CNF                     | Propositional                                                                         | C          | Competition-grade SAT solving        |
+| [STP](https://github.com/stp/stp)                   | Simple Theorem Prover for bit-vectors, arrays and floating-point                                 | SMT-LIB                 | Bit-vectors, arrays, floating-point                                                   | C++        | Symbolic execution (KLEE)            |
 
 ## Program Verification
 
-| Repository | Description | Approach | Target Language | Automation | Output |
-| ---------- | ----------- | -------- | --------------- | ---------- | ------ |
-| [Dafny](https://github.com/dafny-lang/dafny) | Verification-aware programming language with built-in verifier | Deductive | Dafny | Auto-active | Verified programs |
-| [Why3](https://www.why3.org/) | Platform for deductive program verification via VC generation | Deductive | WhyML | SMT + provers | Proof obligations |
-| [Frama-C](https://frama-c.com/) | Extensible platform for analyzing C programs | Abstract interpretation, deductive | C | Plugin-dependent | Annotations, proofs |
-| [CBMC](https://github.com/diffblue/cbmc) | Bounded model checker for C/C++ and Java bytecode | BMC | C, C++, Java | Automated | Counterexamples |
-| [Cameleer](https://github.com/ocaml-gospel/cameleer) | Deductive verifier for OCaml programs using GOSPEL specs | Deductive | OCaml | SMT + interactive | Proof obligations |
-| [Verus](https://github.com/verus-lang/verus) | Verification tool for Rust using SMT and linear types | Deductive | Rust | Auto-active | Verified programs |
-| [Liquid Haskell](https://ucsd-progsys.github.io/liquidhaskell/) | Refinement types for Haskell programs | Refinement types | Haskell | Automated | Type-level proofs |
-| [SPARK](https://www.adacore.com/sparkpro) | Subset of Ada for high-integrity software with proof | Deductive | Ada/SPARK | Automated + interactive | Proven absence of runtime errors |
-| [Viper](https://www.pm.inf.ethz.ch/research/viper.html) | Verification infrastructure for permission-based reasoning | Separation logic | Silver, Java-like | Automated | Heap-manipulating programs |
-| [Prusti](https://github.com/viperproject/prusti-dev) | Static verifier for Rust based on Viper | Deductive | Rust | Automated | Memory safety, functional props |
-| [Kani](https://github.com/model-checking/kani) | Rust model checker built on CBMC | BMC | Rust | Automated | Counterexamples |
-| [Creusot](https://github.com/creusot-rs/creusot) | Deductive verifier for Rust using Why3 | Deductive | Rust | Interactive | Functional correctness |
+| Name                                                            | Description                                                                | Approach                                   | Target Language                             | Automation              | Output                                            |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------- | ----------------------- | ------------------------------------------------- |
+| [Dafny](https://github.com/dafny-lang/dafny)                    | Verification-aware programming language with built-in verifier             | Deductive                                  | Dafny                                       | Auto-active             | Verified programs                                 |
+| [Why3](https://why3.org/)                                       | Platform for deductive program verification via VC generation              | Deductive                                  | WhyML                                       | SMT + provers           | Proof obligations                                 |
+| [Frama-C](https://frama-c.com/)                                 | Extensible platform for analyzing C programs                               | Abstract interpretation, deductive         | C                                           | Plugin-dependent        | Annotations, proofs                               |
+| [CBMC](https://github.com/diffblue/cbmc)                        | Bounded model checker for C and C++ (Java bytecode via the companion JBMC) | BMC                                        | C, C++                                      | Automated               | Counterexamples                                   |
+| [Cameleer](https://github.com/ocaml-gospel/cameleer)            | Deductive verifier for OCaml programs using GOSPEL specs                   | Deductive                                  | OCaml                                       | SMT + interactive       | Proof obligations                                 |
+| [Verus](https://github.com/verus-lang/verus)                    | Verification tool for Rust using SMT and linear types                      | Deductive                                  | Rust                                        | Auto-active             | Verified programs                                 |
+| [Liquid Haskell](https://ucsd-progsys.github.io/liquidhaskell/) | Refinement types for Haskell programs                                      | Refinement types                           | Haskell                                     | Auto-active             | Type-level proofs                                 |
+| [SPARK](https://github.com/AdaCore/spark2014)                   | Ada subset with contracts, verified by the open-source GNATprove           | Deductive                                  | Ada/SPARK                                   | Automated + interactive | Absence of runtime errors, functional correctness |
+| [Viper](https://www.pm.inf.ethz.ch/research/viper.html)         | Verification infrastructure for permission-based reasoning                 | Permission-based (implicit dynamic frames) | Viper IVL (front-ends for Rust, Go, Python) | Automated               | Verified heap-manipulating programs               |
+| [Prusti](https://github.com/prusti/prusti)                      | Static verifier for Rust based on Viper                                    | Deductive                                  | Rust                                        | Auto-active             | Panic/overflow freedom, functional correctness    |
+| [Kani](https://github.com/model-checking/kani)                  | Rust model checker built on CBMC                                           | BMC                                        | Rust                                        | Automated               | Counterexamples                                   |
+| [Creusot](https://github.com/creusot-rs/creusot)                | Deductive verifier for Rust using Why3                                     | Deductive                                  | Rust                                        | Auto-active             | Functional correctness                            |
 
 ## Model Checkers
 
-| Repository | Description | Model Type | Properties | Language | Domain |
-| ---------- | ----------- | ---------- | ---------- | -------- | ------ |
-| [TLA+](https://github.com/tlaplus/tlaplus) | Specification language and model checker for concurrent systems | State machines | Safety, liveness | TLA+ | Distributed systems, protocols |
-| [Alloy](https://alloytools.org/) | Relational modeling language with SAT-based analyzer | Relational | Structural | Alloy | Software design, architecture |
-| [SPIN](https://spinroot.com/) | Model checker for multi-threaded software and protocols | Promela | LTL | Promela / C | Concurrent software |
-| [UPPAAL](https://uppaal.org/) | Tool for timed automata and real-time systems | Timed automata | Timed properties | UPPAAL | Real-time, embedded |
-| [PRISM](https://www.prismmodelchecker.org/) | Probabilistic model checker for stochastic systems | DTMC, MDP, CTMC | Probabilistic | PRISM | Security, biology, protocols |
-| [nuXmv](https://nuxmv.fbk.eu/) | Extension of NuSMV for symbolic model checking | Kripke structures | CTL, LTL | SMV | Hardware, software |
-| [Ivy](https://github.com/microsoft/ivy) | Language and tool for interactive verification of protocols | Transition systems | Safety | Ivy | Network protocols |
-| [Apalache](https://github.com/apalache-mc/apalache) | Symbolic model checker for TLA+ specifications | TLA+ | Safety, liveness | TLA+ | Distributed systems |
+| Name                                                | Description                                                                          | Model Type                   | Properties                                | Language    | Domain                         |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------- | ----------------------------------------- | ----------- | ------------------------------ |
+| [TLA+](https://github.com/tlaplus/tlaplus)          | Specification language and model checker for concurrent systems                      | State machines               | Safety, liveness                          | TLA+        | Distributed systems, protocols |
+| [Alloy](https://alloytools.org/)                    | Relational modeling language with SAT-based analyzer                                 | Relational                   | Structural, temporal (LTL, since Alloy 6) | Alloy       | Software design, architecture  |
+| [SPIN](https://spinroot.com/)                       | Model checker for multi-threaded software and protocols                              | Concurrent processes         | Assertions, LTL, deadlocks, progress      | Promela / C | Concurrent software            |
+| [UPPAAL](https://uppaal.org/)                       | Tool for timed automata and real-time systems                                        | Timed automata               | Timed properties                          | UPPAAL      | Real-time, embedded            |
+| [PRISM](https://www.prismmodelchecker.org/)         | Probabilistic model checker for stochastic systems                                   | DTMC, CTMC, MDP, PTA, POMDP  | Probabilistic                             | PRISM       | Security, biology, protocols   |
+| [nuXmv](https://nuxmv.fbk.eu/)                      | Extension of NuSMV for symbolic model checking of finite- and infinite-state systems | Transition systems           | CTL, LTL, invariants, PSL                 | SMV         | Hardware, software             |
+| [Ivy](https://github.com/kenmcmil/ivy)              | Language and tool for interactive verification of distributed protocols              | Transition systems           | Safety, liveness                          | Ivy         | Distributed protocols          |
+| [Apalache](https://github.com/apalache-mc/apalache) | Symbolic model checker for TLA+ and Quint specifications                             | State machines (SMT-encoded) | Safety, bounded liveness                  | TLA+, Quint | Distributed systems            |
 
 ## Specification Languages & Frameworks
 
-- [K Framework](http://www.kframework.org/) - Rewrite-based executable semantics framework for defining programming languages and verifying programs.
-- [ACSL](https://frama-c.com/acsl.html) - ANSI/ISO C Specification Language used by Frama-C and other C verifiers.
+- [K Framework](https://kframework.org/) - Rewrite-based executable semantics framework for defining programming languages and verifying programs.
+- [ACSL](https://frama-c.com/html/acsl.html) - ANSI/ISO C Specification Language used by Frama-C and other C verifiers.
 - [JML](https://www.openjml.org/) - Java Modeling Language for specifying behavior of Java programs.
-- [Gospel](https://ocaml-gospel.github.io/gospel/) - OCaml specification language for deductive verification.
+- [Gospel](https://ocaml-gospel.github.io/gospel/) - Tool-agnostic behavioral specification language for OCaml, used for deductive verification and runtime checking.
 - [Sail](https://github.com/rems-project/sail) - Language for specifying instruction set architectures (ISAs).
 
 ## Hardware Verification
 
-| Repository | Description | Approach | Input | Automation | Domain |
-| ---------- | ----------- | -------- | ----- | ---------- | ------ |
-| [SymbiYosys](https://github.com/YosysHQ/sby) | Front-end for Yosys-based formal hardware verification flows | BMC, induction | Verilog, SystemVerilog | Automated | RTL designs |
-| [Yosys](https://github.com/YosysHQ/yosys) | Open synthesis suite with formal verification support | SMT, SAT | Verilog | Semi-automated | RTL, netlists |
-| [riscv-formal](https://github.com/SymbioticEDA/riscv-formal) | Reusable formal verification framework for RISC-V CPU designs | BMC, induction | Verilog | Semi-automated | CPU cores |
-| [ABC](https://github.com/berkeley-abc/abc) | System for logic synthesis and combinational/sequential equivalence checking | CEC, SEC | AIG, BLIF | Automated | Gate-level |
-| [EBMC](http://www.cprover.org/ebmc/) | Model checker for hardware designs (Verilog, SystemVerilog, SMV) | BMC | Verilog, SV | Automated | RTL |
+| Name                                                    | Description                                                      | Approach                                   | Input                                                    | Automation     | Domain        |
+| ------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------- | -------------- | ------------- |
+| [SymbiYosys](https://github.com/YosysHQ/sby)            | Front-end for Yosys-based formal hardware verification flows     | BMC, k-induction, PDR/IC3, cover, liveness | Verilog, SystemVerilog (full SVA and VHDL via Tabby CAD) | Automated      | RTL designs   |
+| [Yosys](https://github.com/YosysHQ/yosys)               | Open synthesis suite with formal verification support            | SMT, SAT                                   | Verilog, SystemVerilog (synthesizable subset)            | Semi-automated | RTL, netlists |
+| [riscv-formal](https://github.com/YosysHQ/riscv-formal) | Reusable formal verification framework for RISC-V CPU designs    | BMC, induction                             | Verilog, SystemVerilog (SVA)                             | Semi-automated | CPU cores     |
+| [ABC](https://github.com/berkeley-abc/abc)              | System for sequential logic synthesis and formal verification    | CEC, SEC, BMC, PDR/IC3, interpolation      | AIGER, BLIF, BENCH, structural Verilog                   | Automated      | Gate-level    |
+| [EBMC](https://www.cprover.org/ebmc/)                   | Model checker for hardware designs (Verilog, SystemVerilog, SMV) | BMC, k-induction, IC3, BDD                 | Verilog, SystemVerilog, SMV                              | Automated      | RTL           |
 
 ### Simulation & Testbenches
 
@@ -85,28 +130,50 @@ Your contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Smart Contract Verification
 
-- [Certora Prover](https://www.certora.com/) - Formal verification tool for EVM smart contracts using CVL (Certora Verification Language). [Open-source components](https://github.com/Certora).
+- [Certora Prover](https://github.com/Certora/CertoraProver) - Formal verification tool for EVM, Solana, and Stellar smart contracts with specifications written in CVL; open source (GPL-3.0) since 2025.
 - [Slither](https://github.com/crytic/slither) - Static analysis framework for Solidity, often used alongside formal verification workflows.
 - [Mythril](https://github.com/ConsenSysDiligence/mythril) - Security analysis tool for EVM bytecode using symbolic execution.
-- [Halmos](https://github.com/a16z/halmos) - Symbolic testing tool for Solidity smart contracts.
+- [Halmos](https://github.com/a16z/halmos) - Symbolic testing tool for EVM smart contracts, compatible with Foundry tests.
 - [HEVM](https://github.com/argotorg/hevm) - Symbolic execution engine for EVM bytecode.
-- [Solc-verify](https://github.com/SRI-CSL/solidity) - Solidity compiler extension for SMT-based verification.
+- [Solc-verify](https://github.com/SRI-CSL/solidity) - Solidity compiler extension for SMT-based verification via Boogie (supports Solidity up to 0.7; inactive since 2021).
 - [VeriSol](https://github.com/microsoft/verisol) - Formal correctness analyzer for Solidity via Boogie translation (archived; no longer actively maintained since 2021).
-- [Kontrol](https://github.com/runtimeverification/kontrol) - Formal verification for Solidity using K Framework semantics.
+- [Kontrol](https://github.com/runtimeverification/kontrol) - Formal verification for Solidity using K Framework semantics (KEVM) and Foundry.
 - [Verity](https://github.com/lfglabs-dev/verity) - Lean 4 framework for formally specified and verified smart contracts.
-- [Move Prover (Aptos)](https://github.com/move-language/move-on-aptos) - Formal verification for Move smart contracts on Aptos.
-- [Move Prover (Sui)](https://github.com/move-language/move-sui) - Formal verification for Move smart contracts on Sui.
+- [Move Prover (Aptos)](https://github.com/aptos-labs/aptos-core/tree/main/third_party/move/move-prover) - Formal verification for Move smart contracts on Aptos.
+- [Sui Prover](https://github.com/asymptotic-code/sui-prover) - Formal verification tool for Move smart contracts on Sui, built on Boogie and Z3.
 
 ## Verified Systems & Case Studies
 
 - [seL4](https://sel4.systems/) - Microkernel with end-to-end proof of implementation correctness and security enforcement.
-- [CompCert](https://compcert.org/) - Formally verified optimizing compiler for a large subset of C.
-- [CertiKOS](http://flint.cs.yale.edu/certikos/) - Certified concurrent OS kernel with verified C compiler toolchain.
+- [CompCert](https://compcert.org/) - Formally verified optimizing compiler for almost all of the C language (ISO C 2011).
+- [CertiKOS](https://flint.cs.yale.edu/certikos/) - Certified concurrent OS kernel with verified C compiler toolchain.
 - [Ironclad / IronFleet](https://github.com/microsoft/Ironclad) - Verified distributed systems and applications in Dafny (Microsoft Research).
-- [miTLS](https://github.com/project-everest/mitls-fstar) - Verified reference implementation of TLS 1.3 in F*.
-- [HACMS](https://www.darpa.mil/program/high-assurance-cyber-military-systems) - DARPA program demonstrating formally verified unmanned vehicles.
-- [EverCrypt](https://github.com/hacl-star/hacl-star) - Verified cryptographic library in F*.
+- [miTLS](https://github.com/project-everest/mitls-fstar) - Partially verified reference implementation of TLS 1.3 in F* (verified record layer).
+- [HACMS](https://www.darpa.mil/research/programs/high-assurance-cyber-military-systems) - Completed DARPA program that applied formal methods (including seL4) to build high-assurance vehicle software, demonstrated on a quadcopter and Boeing's Unmanned Little Bird helicopter.
+- [HACL* / EverCrypt](https://github.com/hacl-star/hacl-star) - Verified cryptographic library in F* (HACL*) and the EverCrypt provider that combines it with Vale verified assembly behind one agile API.
 - [Vale](https://github.com/project-everest/vale) - Tool for generating verified assembly language.
+
+## AI for Formal Verification
+
+Language models are now used both to write proofs and to check that AI-generated mathematics is correct.
+
+### Libraries & Tools
+
+- [Mathlib](https://github.com/leanprover-community/mathlib4) - Community library of formalized mathematics for Lean 4; the main target and training corpus for AI provers.
+- [LeanDojo](https://github.com/lean-dojo/LeanDojo) - Toolkit for extracting training data from Lean projects and letting models interact with Lean programmatically.
+- [Lean Copilot](https://github.com/lean-dojo/LeanCopilot) - Runs LLMs inside Lean 4 to suggest tactics, search for proofs, and select premises.
+
+### Models & Results
+
+- [OpenAI math collection](https://github.com/openai/math) - 700+ mathematical manuscripts produced by an internal OpenAI model on open research problems, with Lean formalizations for about 42% of top-line results as of October 2026; unformalized results are not independently verified and may contain errors.
+- [DeepSeek-Prover-V2](https://github.com/deepseek-ai/DeepSeek-Prover-V2) - Open-weight language model for theorem proving in Lean 4, trained with reinforcement learning on subgoal decomposition.
+- [AlphaProof](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/) - DeepMind's reinforcement-learning system that proves competition problems in Lean; reached silver-medal level at IMO 2024.
+
+### Benchmarks
+
+- [miniF2F](https://github.com/openai/miniF2F) - Olympiad-level formal mathematics benchmark in Lean, Isabelle, and Metamath (archived; still the standard reference set).
+- [PutnamBench](https://github.com/trishullab/PutnamBench) - Putnam competition problems formalized in Lean 4, Isabelle, and Rocq.
+- [DafnyBench](https://github.com/sun-wendy/DafnyBench) - Benchmark of Dafny programs for evaluating LLMs on software verification.
 
 ## Learning Resources
 
@@ -116,30 +183,28 @@ Your contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 - [Certified Programming with Dependent Types](http://adam.chlipala.net/cpdt/) - Practical engineering with Rocq/Coq (Adam Chlipala).
 - [The Little Prover](https://mitpress.mit.edu/books/little-prover) - Gentle introduction to inductive proofs (Friedman & Eastlund).
 - [Concrete Semantics](http://concrete-semantics.org/) - Semantics course using Isabelle (Nipkow & Klein).
-- [Programming and Proving in Agda](https://plfa.github.io/) - Introduction to dependent types and Agda (Wadler et al.).
-- [Homotopy Type Theory](https://homotopytypetheory.org/book/) - Univalent foundations of mathematics.
+- [Programming Language Foundations in Agda](https://plfa.github.io/) - Introduction to programming language theory using the proof assistant Agda (Wadler, Kokke & Siek).
+- [Homotopy Type Theory: Univalent Foundations of Mathematics](https://homotopytypetheory.org/book/) - Research-level text on homotopy type theory and univalent foundations (The Univalent Foundations Program, 2013).
 
 ### Courses & Tutorials
 
 - [DeepSpec Summer School](https://www.youtube.com/channel/UC5yB0ZRgc4A99ttkwer-dDw) - Lectures on deep specification and interactive theorem proving.
-- [Logical Foundations (Software Foundations Vol. 1)](https://softwarefoundations.cis.upenn.edu/lf-current/) - Self-paced Coq/Rocq course.
-- [Theorem Proving in Lean 4](https://leanprover.github.io/theorem_proving_in_lean4/) - Official Lean 4 tutorial.
+- [Theorem Proving in Lean 4](https://lean-lang.org/theorem_proving_in_lean4/) - Official Lean 4 tutorial.
 - [Learn TLA+](https://learntla.com/) - Practical introduction to TLA+ for system design.
 - [Dan Gisselquist's Formal Verification Blog](https://zipcpu.com/formal/formal.html) - Hands-on FPGA/RTL formal verification tutorials.
-- [Benjamin Pierce Software Foundations Lectures](https://www.youtube.com/playlist?list=PLGCr8P_YncjUT7gXUVJWSoefQ40gTOz89) - Video lectures accompanying Software Foundations.
+- [Software Foundations in Coq (Pierce, OPLSS 2012)](https://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html) - Video lectures from the Oregon Programming Languages Summer School.
 
 ## Research
 
-- Propositions as Types (Wadler, 2015): Accessible survey of the Curry–Howard correspondence between proofs and programs. [[Paper]](https://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf)
-- An Axiomatic Basis for Computer Programming (Hoare, 1969): Introduces Hoare logic for program correctness. [[Paper]](https://doi.org/10.1145/363235.363259)
-- The seL4 Microkernel: Formal Verification of an OS Kernel (SOSP'09): End-to-end verification of a production OS kernel. [[Paper]](https://sel4.systems/Info/Docs/SEL4.pdf)
-- CompCert: A Formally Verified Optimizing Compiler (POPL'09): Verified C compiler preserving program semantics. [[Paper]](https://xavierleroy.org/publi/compcert-backend.pdf)
-- A Calculus of Mobile Processes, Part I (Milner, 1989): Pi-calculus foundation for concurrent system reasoning. [[Paper]](http://www.lfcs.inf.ed.ac.uk/reports/89/ECS-LFCS-89-85/)
-- Model Checking (1997): Clarke, Grumberg, and Peled's foundational model checking text. [[Book]](https://mitpress.mit.edu/9780262032706/model-checking/)
-- Formal Verification of Smart Contracts (2018): Survey of formal methods for blockchain contracts. [[Paper]](https://arxiv.org/abs/1806.08608)
-- PropertyGPT: LLM-driven Formal Verification of Smart Contracts (NDSS'24): Retrieval-augmented property generation for contract verification. [[Paper]](https://www.ndss-symposium.org/ndss-paper/propertygpt-llm-driven-formal-verification-of-smart-contracts-through-retrieval-augmented-property-generation/)
-- AlphaProof: AI for formal mathematical reasoning at IMO level (2024): DeepMind's RL + language model approach to theorem proving. [[Blog]](https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/)
-- Lean-based Auto-Formalized Mathematics (2025–2026): Lecture notes on LLM-assisted formalization in Lean 4. [[Notes]](https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html)
+- [Propositions as Types](https://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf) - Accessible survey of the Curry–Howard correspondence between proofs and programs (Wadler, CACM 2015).
+- [An Axiomatic Basis for Computer Programming](https://doi.org/10.1145/363235.363259) - Introduces Hoare logic for program correctness (Hoare, CACM 1969).
+- [seL4: Formal Verification of an OS Kernel](https://sel4.systems/Research/pdfs/sel4-formal-verification-os-kernel.pdf) - First machine-checked proof of functional correctness of a general-purpose OS kernel, from abstract specification down to C (Klein et al., SOSP 2009).
+- [Formal Verification of a Realistic Compiler](https://xavierleroy.org/publi/compcert-CACM.pdf) - Overview of CompCert, a C compiler with a machine-checked proof of semantic preservation (Leroy, CACM 2009).
+- [A Calculus of Mobile Processes, Part I](https://www.lfcs.inf.ed.ac.uk/reports/89/ECS-LFCS-89-85/) - Pi-calculus foundation for reasoning about concurrent systems (Milner, Parrow & Walker, 1989).
+- [Model Checking](https://mitpress.mit.edu/9780262038836/model-checking/) - Foundational textbook on model checking (Clarke, Grumberg & Peled, MIT Press 1999; 2nd edition with Kroening & Veith, 2018).
+- [A Survey of Smart Contract Formal Specification and Verification](https://arxiv.org/abs/2008.02712) - Survey of formal methods for smart contracts (Tolmach et al., ACM Computing Surveys 2021).
+- [PropertyGPT: LLM-driven Formal Verification of Smart Contracts through Retrieval-Augmented Property Generation](https://www.ndss-symposium.org/ndss-paper/propertygpt-llm-driven-formal-verification-of-smart-contracts-through-retrieval-augmented-property-generation/) - Retrieval-augmented property generation for contract verification (Liu et al., NDSS 2025).
+- [Olympiad-level Formal Mathematical Reasoning with Reinforcement Learning](https://doi.org/10.1038/s41586-025-09833-y) - The AlphaProof paper: reinforcement learning with a language model for theorem proving in Lean (Hubert et al., Nature 2025).
 
 ## Conferences & Events
 
@@ -147,14 +212,20 @@ Your contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 - [FM](https://www.fmeurope.org/) - International Symposium on Formal Methods (Formal Methods Europe).
 - [ITP](https://itp-conference.github.io/) - International Conference on Interactive Theorem Proving.
 - [CPP](https://sigplan.org/Conferences/CPP/) - Certified Programs and Proofs (co-located with POPL).
-- [TACAS](https://etaps.org/) - Tools and Algorithms for Construction and Analysis of Systems.
-- [FMBC](https://sites.google.com/view/fmbc) - Formal Methods for Blockchains workshop.
-- [ORCONF](https://orconf.org/) - Open Source Digital Design Conference.
-- [CHIPS Alliance DV Workshop](https://www.chipsalliance.org/) - Open-source design verification workshop.
+- [TACAS](https://tacas.info/) - Tools and Algorithms for the Construction and Analysis of Systems.
+- [FMCAD](https://www.fmcad.org/) - Formal Methods in Computer-Aided Design.
+- [FMBC](https://fmbc.gitlab.io/) - Formal Methods for Blockchains workshop.
+- [ORConf](https://fossi-foundation.org/orconf/) - Open Source Digital Design Conference.
 
 ## Related Lists
 
 - [awesome-formal-verification (ElNiak)](https://github.com/ElNiak/awesome-formal-verification) - Comprehensive list covering software and hardware verification.
 - [awesome-open-hardware-verification](https://github.com/ben-marshall/awesome-open-hardware-verification) - Open-source hardware verification tools and flows.
 - [ethereum_formal_verification_overview](https://github.com/leonardoalt/ethereum_formal_verification_overview) - Overview of formal verification tools for Ethereum smart contracts.
-- [Formal Methods Wiki](https://en.wikipedia.org/wiki/Formal_methods) - Wikipedia entry on formal methods and verification.
+- [Formal methods (Wikipedia)](https://en.wikipedia.org/wiki/Formal_methods) - Encyclopedia overview of formal methods and verification.
+
+## Maintenance
+
+Every entry links to one primary source: the official site or the repository where development takes place. When a project moves, the link follows it. Descriptions state what a tool does today; projects that are archived or inactive keep their entry with a note, so readers know what to expect before cloning. Research entries use the title, authors, and venue of the published version and link to an open-access copy where one exists.
+
+A GitHub Actions workflow runs `awesome-lint` and a link checker on every pull request and once a week, so broken links are caught without waiting for a reader to report them.

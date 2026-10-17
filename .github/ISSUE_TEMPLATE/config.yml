@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report an incorrect entry
+    url: https://github.com/hohieuai/awesome-formal-verification/issues/new?title=Fix%3A%20
+    about: Wrong description, outdated link, or a project that has moved or been archived.

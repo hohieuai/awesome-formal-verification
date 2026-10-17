@@ -1,0 +1,12 @@
+# Configuration for the lychee link checker (https://github.com/lycheeverse/lychee)
+
+no_progress = true
+max_concurrency = 8
+timeout = 30
+max_retries = 2
+
+# Publisher sites that return 403 to automated clients but open normally in a browser.
+accept = ["200..=204", "403", "429"]
+
+# The X share intent requires a logged-in session.
+exclude = ["https://twitter.com/intent/", "https://x.com/intent/"]

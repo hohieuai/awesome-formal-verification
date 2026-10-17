@@ -1,39 +1,39 @@
-# Contributing to Awesome Formal Verification
+# Contributing
 
-Thank you for your interest in contributing! This is a curated list — quality and relevance matter more than quantity.
+Contributions are accepted through pull requests against `README.md`. Before opening one, check that the resource meets the criteria below.
 
-## What to Contribute
+## Scope
 
-- **Tools** — theorem provers, SMT solvers, model checkers, program verifiers, hardware verification tools
-- **Verified systems** — real-world projects with formal proofs (OS kernels, compilers, crypto libraries)
-- **Learning resources** — books, courses, tutorials, blog series
-- **Research papers** — seminal or recent work with clear impact on the field
-- **Community links** — forums, chat channels, conferences
+- **Tools** — theorem provers, SMT and SAT solvers, model checkers, program verifiers, hardware verification tools
+- **Specification languages and frameworks**
+- **Verified systems** — real-world projects with machine-checked proofs (OS kernels, compilers, cryptographic libraries)
+- **AI for formal verification** — models, libraries, and benchmarks for machine-assisted proving
+- **Learning resources** — books, courses, tutorials
+- **Research** — papers with established or clearly emerging impact on the field
+- **Conferences and workshops**
 
-## Guidelines
+## Criteria
 
-1. **Relevance** — The resource must be directly related to formal verification, model checking, theorem proving, or deductive verification.
-2. **Quality** — Prefer actively maintained, widely used, or academically significant resources.
-3. **No duplicates** — Check the README before adding. If a tool already exists, improve its description instead.
-4. **Alphabetical order** — Keep items within each section sorted alphabetically (unless a table has a logical grouping).
-5. **One link per item** — Link to the primary source (official site or GitHub repo).
-6. **Brief descriptions** — One line explaining what the resource does and why it matters.
+1. **Relevance** — The resource is directly about formal verification, model checking, theorem proving, or deductive verification.
+2. **Quality** — Actively maintained, widely used, or academically significant.
+3. **No duplicates** — If the entry already exists, improve its description rather than adding a second one.
+4. **Logical grouping** — Keep related entries together (for example, a successor next to the tool it replaces). Otherwise, add new entries at the end of the relevant section.
+5. **One link per entry** — Link to the primary source: the official site or the repository where development takes place, not a mirror or a commercial landing page.
+6. **One-line descriptions** — State what the resource does. If the project is archived or inactive, say so in parentheses.
+7. **Verified facts** — Check names, authors, years, and venues against the official source. For papers, use the title of the published version and link to an open-access copy where one exists.
 
-## Pull Request Process
+## Out of scope
 
-1. Fork the repository
-2. Create a branch (`git checkout -b add-resource-name`)
-3. Edit `README.md` with your addition
-4. Commit with a clear message (e.g., `Add Verus to program verification section`)
-5. Open a Pull Request describing what you added and why
-
-## What Not to Add
-
-- Commercial tools without a free tier or open-source component (unless historically significant)
+- Commercial tools without a free tier or open-source component, unless historically significant
 - Blog posts or papers without lasting value
 - Self-promotion or affiliate links
 - Resources unrelated to formal verification
 
-## Questions?
+## Pull request process
 
-Open an issue if you're unsure whether a resource fits. We're happy to discuss!
+1. Fork the repository and create a branch (`git checkout -b add-<resource>`).
+2. Edit `README.md`.
+3. Commit with a descriptive message (for example, `Add Verus to Program Verification`).
+4. Open a pull request stating what you added and why it meets the criteria.
+
+If you are unsure whether a resource fits, open an issue first.
