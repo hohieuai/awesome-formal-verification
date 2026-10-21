@@ -3,7 +3,8 @@
 no_progress = true
 max_concurrency = 8
 timeout = 30
-max_retries = 2
+max_retries = 4
+retry_wait_time = 5
 
 # Publisher sites that return 403 to automated clients but open normally in a browser.
 accept = ["200..=204", "403", "429"]
