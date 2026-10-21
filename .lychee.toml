@@ -6,6 +6,9 @@ timeout = 30
 max_retries = 4
 retry_wait_time = 5
 
+# Slow academic sites occasionally time out from CI runners; dead links still fail.
+accept_timeouts = true
+
 # Publisher sites that return 403 to automated clients but open normally in a browser.
 accept = ["200..=204", "403", "429"]
 
