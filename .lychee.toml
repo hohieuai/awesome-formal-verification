@@ -6,7 +6,8 @@ timeout = 30
 max_retries = 4
 retry_wait_time = 5
 
-# Slow academic sites occasionally time out from CI runners; dead links still fail.
+# Some sites (e.g. sigplan.org) time out from GitHub-hosted runners but load normally
+# elsewhere. Timeouts are reported but do not fail the check; dead links still fail.
 accept_timeouts = true
 
 # Publisher sites that return 403 to automated clients but open normally in a browser.
