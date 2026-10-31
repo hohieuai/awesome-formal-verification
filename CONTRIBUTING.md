@@ -29,6 +29,10 @@ Contributions are accepted through pull requests against `README.md`. Before ope
 - Self-promotion or affiliate links
 - Resources unrelated to formal verification
 
+## Material hosted in this repository
+
+The list itself is dedicated to the public domain under CC0 1.0. The `proving-is-programming/` folder holds a slide deck maintained alongside the list; it is a derivative work distributed under the Apache License 2.0, and its listing is marked as hosted in this repository. Licensing per path is declared in `REUSE.toml`.
+
 ## Pull request process
 
 1. Fork the repository and create a branch (`git checkout -b add-<resource>`).

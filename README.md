@@ -181,7 +181,7 @@ Automated theorem provers search for proofs without user interaction, typically 
 
 ### Books
 
-- [Software Foundations](https://softwarefoundations.cis.upenn.edu/) - Interactive textbook series on Coq/Rocq and PL theory (Pierce et al.).
+- [Software Foundations](https://softwarefoundations.cis.upenn.edu/) - Interactive textbook series on Rocq/Coq and PL theory (Pierce et al.).
 - [Certified Programming with Dependent Types](http://adam.chlipala.net/cpdt/) - Practical engineering with Rocq/Coq (Adam Chlipala).
 - [The Little Prover](https://mitpress.mit.edu/books/little-prover) - Gentle introduction to inductive proofs (Friedman & Eastlund).
 - [Concrete Semantics](http://concrete-semantics.org/) - Semantics course using Isabelle (Nipkow & Klein).
@@ -192,7 +192,7 @@ Automated theorem provers search for proofs without user interaction, typically 
 
 - [DeepSpec Summer School](https://www.youtube.com/channel/UC5yB0ZRgc4A99ttkwer-dDw) - Lectures on deep specification and interactive theorem proving.
 - [Theorem Proving in Lean 4](https://lean-lang.org/theorem_proving_in_lean4/) - Official Lean 4 tutorial.
-- [Proving Is Programming: Lean 4 from First Principles](https://github.com/hohieuai/awesome-formal-verification/tree/main/proving-is-programming) - Slide deck (PDF) built on Theorem Proving in Lean 4 and other cited sources, with added background and walkthroughs (compiled by the list maintainer).
+- [Proving Is Programming: Lean 4 from First Principles](https://github.com/hohieuai/awesome-formal-verification/tree/main/proving-is-programming) - Slide deck (PDF) on Lean 4 adapted from Theorem Proving in Lean 4, with added background and worked examples (hosted in this repository; Apache-2.0).
 - [Learn TLA+](https://learntla.com/) - Practical introduction to TLA+ for system design.
 - [Dan Gisselquist's Formal Verification Blog](https://zipcpu.com/formal/formal.html) - Hands-on FPGA/RTL formal verification tutorials.
 - [Software Foundations in Coq (Pierce, OPLSS 2012)](https://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html) - Video lectures from the Oregon Programming Languages Summer School.
@@ -225,4 +225,3 @@ Automated theorem provers search for proofs without user interaction, typically 
 - [awesome-formal-verification (ElNiak)](https://github.com/ElNiak/awesome-formal-verification) - Comprehensive list covering software and hardware verification.
 - [awesome-open-hardware-verification](https://github.com/ben-marshall/awesome-open-hardware-verification) - Open-source hardware verification tools and flows.
 - [ethereum_formal_verification_overview](https://github.com/leonardoalt/ethereum_formal_verification_overview) - Overview of formal verification tools for Ethereum smart contracts.
-- [Formal methods (Wikipedia)](https://en.wikipedia.org/wiki/Formal_methods) - Encyclopedia overview of formal methods and verification.
