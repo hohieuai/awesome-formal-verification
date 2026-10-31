@@ -55,6 +55,16 @@ Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
 | [F*](https://github.com/FStarLang/FStar) | Dependently typed language for program verification and crypto              | Dependent types                     | SMT-backed              | F*             | Crypto (HACL*), TLS, parsers, systems             |
 | [Idris 2](https://idris-lang.org/)       | General-purpose language with dependent types                               | Dependent types                     | Interactive             | Idris          | PL research, theorem proving                      |
 
+### Automated Theorem Provers
+
+Automated theorem provers search for proofs without user interaction, typically on first-order problems stated in TPTP. SMT solvers such as Z3 and cvc5 also support quantifiers and are listed under SMT / SAT Solvers.
+
+| Name                                          | Description                                                                                               | Logic                                                           | Input         | Language | Typical Use                                  |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------- | -------- | -------------------------------------------- |
+| [Vampire](https://github.com/vprover/vampire) | First-order theorem prover with awards at CASC and SMT-COMP                                               | First-order logic with theories (arithmetic, arrays, datatypes) | TPTP, SMT-LIB | C++      | Mathematics, hammers (Isabelle Sledgehammer) |
+| [E](https://github.com/eprover/eprover)       | Equational theorem prover for first-order logic                                                           | First-order logic with equality; monomorphic HOL (optional)     | TPTP, LOP     | C        | Hammers (Isabelle Sledgehammer)              |
+| [Prover9](https://prover9.org)                | Resolution prover bundled with the Mace4 finite model finder; successor of Otter, maintained as LADR-2026 | First-order and equational logic                                | LADR          | C        | Algebra, counterexample search               |
+
 ## SMT / SAT Solvers
 
 | Name                                                | Description                                                                                      | Input                   | Theories                                                                              | Language   | Typical Use                          |
