@@ -1,0 +1,20 @@
+Proving Is Programming: Lean 4 from First Principles
+
+This work is a derivative work of:
+
+  Theorem Proving in Lean 4
+  by Jeremy Avigad, Leonardo de Moura, Soonho Kong and Sebastian Ullrich,
+  with contributions from the Lean Community.
+  https://lean-lang.org/theorem_proving_in_lean4/
+  https://github.com/leanprover/theorem_proving_in_lean4
+
+The original work is licensed under the Apache License, Version 2.0.
+Modifications copyright 2026 hohieuai (https://github.com/hohieuai).
+This derivative work is distributed under the same License (see LICENSE).
+
+It also cites other works for background and further reading; they are
+listed on the deck's References slides and their text is not reproduced.
+
+This work has been modified from the original; see "Notice of changes" in
+README.md and on slide 2 of the deck. It is not affiliated with or endorsed
+by the authors of the original work or by the Lean project.

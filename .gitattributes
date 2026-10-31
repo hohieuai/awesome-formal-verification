@@ -1,0 +1,2 @@
+# Treat documents as binary: no text diffs, no line-ending conversion
+*.pdf  binary

@@ -1,0 +1,20 @@
+version = 1
+
+# The curated list, its documentation and CI configuration are dedicated
+# to the public domain under CC0 1.0.
+[[annotations]]
+path = "**"
+SPDX-FileCopyrightText = "2026 hohieuai <https://github.com/hohieuai>"
+SPDX-License-Identifier = "CC0-1.0"
+
+# The slide deck is a derivative work of "Theorem Proving in Lean 4" and is
+# distributed under the Apache License 2.0, like the original. The CC0
+# dedication above does not apply to this folder. See its NOTICE file.
+[[annotations]]
+path = "proving-is-programming/**"
+precedence = "override"
+SPDX-FileCopyrightText = [
+  "Jeremy Avigad, Leonardo de Moura, Soonho Kong, Sebastian Ullrich and the Lean Community (Theorem Proving in Lean 4)",
+  "2026 hohieuai <https://github.com/hohieuai> (modifications)",
+]
+SPDX-License-Identifier = "Apache-2.0"

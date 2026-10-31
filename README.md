@@ -192,6 +192,7 @@ Automated theorem provers search for proofs without user interaction, typically 
 
 - [DeepSpec Summer School](https://www.youtube.com/channel/UC5yB0ZRgc4A99ttkwer-dDw) - Lectures on deep specification and interactive theorem proving.
 - [Theorem Proving in Lean 4](https://lean-lang.org/theorem_proving_in_lean4/) - Official Lean 4 tutorial.
+- [Proving Is Programming: Lean 4 from First Principles](https://github.com/hohieuai/awesome-formal-verification/tree/main/proving-is-programming) - Slide deck (PDF) built on Theorem Proving in Lean 4 and other cited sources, with added background and walkthroughs (compiled by the list maintainer).
 - [Learn TLA+](https://learntla.com/) - Practical introduction to TLA+ for system design.
 - [Dan Gisselquist's Formal Verification Blog](https://zipcpu.com/formal/formal.html) - Hands-on FPGA/RTL formal verification tutorials.
 - [Software Foundations in Coq (Pierce, OPLSS 2012)](https://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html) - Video lectures from the Oregon Programming Languages Summer School.
