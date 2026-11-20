@@ -14,4 +14,6 @@ accept_timeouts = true
 accept = ["200..=204", "403", "429"]
 
 # The X share intent requires a logged-in session.
-exclude = ["https://twitter.com/intent/", "https://x.com/intent/"]
+# flint.cs.yale.edu (CertiKOS) serves an incomplete certificate chain: browsers fetch the
+# missing intermediate, but lychee rejects the certificate. Remove once the server is fixed.
+exclude = ["https://twitter.com/intent/", "https://x.com/intent/", "https://flint.cs.yale.edu/"]
